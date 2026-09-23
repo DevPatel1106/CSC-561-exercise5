@@ -156,7 +156,8 @@ function setupShaders() {
     // define fragment shader in essl using es6 template strings
     var fShaderCode = `
         void main(void) {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0); // all fragments are white
+            // Color the triangles orange
+            gl_FragColor = vec4(1.0, 0.4, 0.0, 1.0);
         }
     `;
     
@@ -165,7 +166,18 @@ function setupShaders() {
         attribute vec3 vertexPosition;
 
         void main(void) {
-            gl_Position = vec4(vertexPosition, 1.0); // use the untransformed position
+            // Move the triangles to the right
+            float moveX = 0.15;
+
+            // Reshape: make them narrower horizontally
+            float scaleX = 0.75;
+            float scaleY = 1.0;
+
+            float x = vertexPosition.x * scaleX + moveX;
+            float y = vertexPosition.y * scaleY;
+            float z = vertexPosition.z;
+
+            gl_Position = vec4(x, y, z, 1.0);
         }
     `;
     
