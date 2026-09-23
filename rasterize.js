@@ -181,6 +181,7 @@ function setupShaders() {
         }
     `;
     
+    
     try {
         // console.log("fragment shader: "+fShaderCode);
         var fShader = gl.createShader(gl.FRAGMENT_SHADER); // create frag shader
